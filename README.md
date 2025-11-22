@@ -41,13 +41,14 @@ If you prefer to download the code directly using Git, follow these steps. This 
 **3. Clone the Repository**
 *   Run the clone command with the URL you copied:
     ```bash
-    git clone <PASTE_YOUR_URL_HERE>
+    git clone https://github.com/Josephhines/sonos-pi.git
     ```
-    *(Example: `git clone https://github.com/username/sonos-project.git`)*
 
 **4. Enter the Project Folder**
-*   Find the new folder name: `ls`
-*   Go into it: `cd <folder_name>`
+*   Go into the new folder:
+    ```bash
+    cd sonos-pi
+    ```
 
 **5. Switch to the Correct Branch**
 *   Since we are working on specific features, the code might not be on the main branch yet.

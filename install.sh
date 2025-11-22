@@ -377,7 +377,7 @@ npm install
 echo "[5/5] Setting up Systemd Services..."
 
 # sonos-api.service
-sudo cat > /etc/systemd/system/sonos-api.service <<'EOF'
+cat <<'EOF' | sudo tee /etc/systemd/system/sonos-api.service > /dev/null
 [Unit]
 Description=Node Sonos HTTP API
 After=network.target
@@ -394,7 +394,7 @@ WantedBy=multi-user.target
 EOF
 
 # sonos-controller.service
-sudo cat > /etc/systemd/system/sonos-controller.service <<'EOF'
+cat <<'EOF' | sudo tee /etc/systemd/system/sonos-controller.service > /dev/null
 [Unit]
 Description=Sonos Button Controller
 After=network.target sonos-api.service

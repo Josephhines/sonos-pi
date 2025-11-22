@@ -65,6 +65,19 @@ If you prefer to download the code directly using Git, follow these steps. This 
     bash install.sh
     ```
 
+**7. Keeping it Updated**
+*   If you make changes to the code on GitHub later, you can easily update your Pi:
+    ```bash
+    # 1. Go to the folder
+    cd ~/sonos-pi
+    
+    # 2. Download the latest changes
+    git pull
+    
+    # 3. Apply the changes (re-run install or restart service)
+    bash install.sh
+    ```
+
 ### Option C: Manual Copy
 1.  Create each file (`nano index.js`) and paste the content manually.
 

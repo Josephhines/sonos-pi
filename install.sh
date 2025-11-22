@@ -8,7 +8,7 @@ echo "=============================================="
 # 1. Install Dependencies
 echo "[1/5] Installing System Dependencies..."
 sudo apt update
-sudo apt install -y nodejs npm git build-essential gpiod
+sudo apt install -y nodejs npm git build-essential gpiod raspi-utils
 
 # 2. Setup Directories
 echo "[2/5] Creating Project Directories..."
@@ -317,7 +317,7 @@ const ROOMS = config.rooms || [];
 console.log("\n========================================");
 console.log("   Sonos Controller: Hardware Test");
 console.log("========================================");
-console.log("This script uses 'gpioset' to bypass Node.js/onoff issues.");
+console.log("This script uses 'pinctrl' (standard Raspberry Pi tool) to bypass library issues.");
 console.log("Please watch your breadboard.\n");
 
 async function runSequence() {
@@ -336,14 +336,14 @@ async function runSequence() {
         
         try {
             console.log("   - Status: ON  💡");
-            // Attempt to set GPIO High using gpioset (libgpiod)
-            // 0 is usually the chip number for the main header on Pi
-            execSync(`gpioset 0 ${gpio}=1`, { stdio: 'pipe' }); // Capture stderr
+            // Use pinctrl to set Output High (op dh)
+            execSync(`pinctrl set ${gpio} op dh`, { stdio: 'pipe' }); 
             
             await new Promise(r => setTimeout(r, 2000)); // Wait 2 seconds
             
             console.log("   - Status: OFF ⚫");
-            execSync(`gpioset 0 ${gpio}=0`, { stdio: 'pipe' });
+            // Use pinctrl to set Output Low (op dl)
+            execSync(`pinctrl set ${gpio} op dl`, { stdio: 'pipe' });
             
         } catch (err) {
             console.error(`   ❌ ERROR: Failed to control GPIO ${gpio}.`);
@@ -353,7 +353,7 @@ async function runSequence() {
             } else {
                 console.error(`      Details: ${err.message}`);
             }
-            console.error("      (Ensure you installed 'gpiod' via install.sh and are running with permissions)");
+            console.error("      (Ensure 'raspi-utils' is installed and you are running with permissions)");
         }
         
         console.log("----------------------------------------");

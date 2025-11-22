@@ -1,0 +1,13 @@
+{
+  "name": "sonos-button-controller",
+  "version": "1.0.0",
+  "description": "Physical button controller for Sonos using node-sonos-http-api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "onoff": "^6.0.3"
+  }
+}

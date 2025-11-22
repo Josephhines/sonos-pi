@@ -1,0 +1,20 @@
+[Unit]
+Description=Sonos Button Controller
+After=network.target sonos-api.service
+
+[Service]
+# Runs as root to ensure full GPIO access
+User=root
+# Note: We removed the raspi-gpio command because it fails on newer Raspberry Pi OS versions.
+# You must ensure the Pull-Up resistor for GPIO 27 is enabled via /boot/firmware/config.txt
+# See SETUP.md for details.
+
+ExecStart=/usr/bin/node /home/pi/sonos-button/index.js
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin
+WorkingDirectory=/home/pi/sonos-button
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

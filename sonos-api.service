@@ -1,0 +1,13 @@
+[Unit]
+Description=Node Sonos HTTP API
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/npm start
+Restart=always
+User=pi
+Environment=PATH=/usr/bin:/usr/local/bin
+WorkingDirectory=/home/pi/node-sonos-http-api
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+{
+  "sonosApiUrl": "http://localhost:5005",
+  "roomName": "Office",
+  "targetJoinRoom": "Living Room",
+  "ledPin": 22,
+  "buttonPin": 27,
+  "debounceTimeout": 500
+}
